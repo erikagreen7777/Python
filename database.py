@@ -12,24 +12,22 @@ def extract(query):
     Your goal is to write an `extract` method that is correct for any provided `query`.
     """
     # YOUR CODE HERE
-    result = []
-    s = '\", \"'
+        result = []
     for i in range(97, 122):
         if query(chr(i)):
             result.extend(query(chr(i)))
         else:
             pass
-    list = s.join(result)
-    beginning = "[\""
-    end = "\"]"
-    new = beginning + list + end
-    print new
-    return new
-
-
-
-    # print globals()
-
+        for j in range(97, 122):
+            if query(chr(i) + chr(j)):
+                result.extend(query(chr(i) + chr(j)))
+            else:
+                pass
+            for k in range(97, 122):
+                if query(chr(i) + chr(j) + chr(k)):
+                    result.extend(query(chr(i) + chr(j) + chr(k)))
+    result = sorted(list(set(result)))
+    return result
 
 def main():
     """Runs your solution -- no need to update (except to maybe try out different databases)."""
